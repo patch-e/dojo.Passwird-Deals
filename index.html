@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dojo - Passwird Deals</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <meta name="description" content="Use Passwird Deals - Dojo on your mobile device to easily browse passwird.com deals on the go!">
+        <meta name="keywords" content="passwird,mobile,deals,electronics">
+
+        <link href="http://ajax.googleapis.com/ajax/libs/dojo/1.7.2/dojox/mobile/themes/iphone/iphone.css" rel="stylesheet">
+        <style type="text/css">
+            body {
+                background-color: #C5CCD3;
+                padding-bottom: 5px;
+            }
+            img { 
+                width: 29px; 
+                height: 29px; 
+            }
+            .center {
+                text-align: center; 
+            }
+            .right {
+                float: right;
+            }
+            .invisible {
+                visibility: hidden;
+            }
+            .hidden {
+                display: none;
+            }
+            .mblRoundRect {
+                margin-bottom: 10px;
+            }
+            .mblRoundRectCategory {
+                white-space: normal;
+                text-overflow: inherit;
+                overflow: visible;
+                padding-right: 20px;
+            }
+            .mblListItemRightText {
+                color: #ff0000;
+            }
+        </style>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.7.2/dojo/dojo.js" 
+                djConfig="parseOnLoad:true, mblIosWorkaround:false"></script>
+        <script src="deals.js"></script>
+    </head>
+    <body>
+        <!--HOME VIEW-->
+        <div id="home" dojoType="dojox.mobile.ScrollableView" selected="true">
+            <div id="home-heading" dojoType="dojox.mobile.Heading" fixed="top">
+                <div dojoType="dojox.mobile.ToolBarButton" label="Refresh" class="left" duration="0" onclick="initialize(true)"></div>
+                <div dojoType="dojox.mobile.ToolBarButton" label="Search" moveTo="search" class="right" duration="0"></div>
+            </div>
+            <ul id="deals" dojoType="dojox.mobile.RoundRectList"></ul>
+            <p id="disclaimer" class="center hidden">
+                <small>This app is in no way affiliated with <a ref="external" target="_blank" href="http://passwird.com">passwird.com</a></small>
+            </p>
+        </div>
+        
+        <!--SEARCH VIEW-->
+        <div id="search" dojoType="dojox.mobile.ScrollableView">
+            <div id="search-heading" dojoType="dojox.mobile.Heading" label="Search" back="Back" moveTo="home" duration="0" fixed="top"></div>
+            <div id="search-toolbar" class="center hidden" dojoType="dojox.mobile.RoundRect">
+                <input id="query" type="text" dojoType="dojox.mobile.TextBox" placeHolder=" Enter search terms" />
+                <button id="go" dojoType="dojox.mobile.Button" onclick="search(this)">GO</button>
+            </div>
+            <ul id="search-results" dojoType="dojox.mobile.RoundRectList" class="hidden"></ul>
+        </div>
+
+        <!--DEAL VIEW-->
+        <div id="deal" dojoType="dojox.mobile.ScrollableView">
+            <div id="deal-heading" dojoType="dojox.mobile.Heading" label="Deal" back="Back" moveTo="home" duration="0" fixed="top"></div>
+            <h1 id="headline" dojoType="dojox.mobile.RoundRectCategory"></h1>
+            <div id="body" dojoType="dojox.mobile.RoundRect" shadow="true"></div>
+        </div>
+    </body>
+</html>
